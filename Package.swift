@@ -2,7 +2,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "MoLang",
+    name: "Molang",
     defaultLocalization: "en",
     platforms: [
         .iOS(.v17),
@@ -12,9 +12,10 @@ let package = Package(
         .visionOS(.v1)
     ],
     products: [
-        .library(name: "MoLang", targets: ["MoLang"])
+        .library(name: "Molang", targets: ["Molang"])
     ],
     targets: [
-        .target(name: "MoLang")
+        .target(name: "Molang"),
+        .testTarget(name: "MolangTests", dependencies: ["Molang"])
     ]
 )
