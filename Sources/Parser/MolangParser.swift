@@ -5,7 +5,7 @@ public struct MolangParser {
         self.tokenIterator = tokenIterator
     }
     
-    public func parse() -> [Expression] {
+    public func parse() -> [MolangExpression] {
         []
     }
 }

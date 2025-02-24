@@ -8,15 +8,15 @@ public class MolangRuntime {
         environment.structs["array"] = MoStruct()
     }
     
-    public func execute(_ expression: Expression) -> MoValue {
+    public func execute(_ expression: MolangExpression) -> MoValue {
         execute([expression], context: [:])
     }
     
-    public func execute(_ expressions: [Expression]) -> MoValue {
+    public func execute(_ expressions: [MolangExpression]) -> MoValue {
         execute(expressions, context: [:])
     }
     
-    public func execute(_ expressions: [Expression], context: [String: MoValue]) -> MoValue {
+    public func execute(_ expressions: [MolangExpression], context: [String: MoValue]) -> MoValue {
         // TODO: implement execution
         
         environment.structs["temp"]?.variables.removeAll()

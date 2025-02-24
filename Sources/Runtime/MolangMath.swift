@@ -8,26 +8,26 @@ struct MolangMath {
         math.functions["acos"] = createFnDouble(acos)
         math.functions["asin"] = createFnDouble(asin)
         math.functions["atan"] = createFnDouble(atan)
-        math.functions["atan2"] = createFnDouble2(atan2)
+        math.functions["atan2"] = createFnDouble(atan2)
         math.functions["ceil"] = createFnDouble(ceil)
-        math.functions["clamp"] = createFnDouble3(clamp)
-        math.functions["cos"] = createFnDouble2(min)
-        math.functions["die_roll"] = createFnDouble3(dieRoll)
-        math.functions["die_roll_integer"] = createFnInt3(dieRollInteger)
+        math.functions["clamp"] = createFnDouble(clamp)
+        math.functions["cos"] = createFnDouble(cos)
+        math.functions["die_roll"] = createFnDouble(dieRoll)
+        math.functions["die_roll_integer"] = createFnInt(dieRollInteger)
         math.functions["exp"] = createFnDouble(exp)
         math.functions["floor"] = createFnDouble(floor)
         math.functions["hermite_blend"] = createFnInt(hermiteBlend)
-        math.functions["lerp"] = createFnDouble3(lerp)
-        math.functions["lerp_rotate"] = createFnDouble3(lerpRotate)
+        math.functions["lerp"] = createFnDouble(lerp)
+        math.functions["lerp_rotate"] = createFnDouble(lerpRotate)
         math.functions["ln"] = createFnDouble(log)
-        math.functions["max"] = createFnDouble2(max)
-        math.functions["min"] = createFnDouble2(min)
+        math.functions["max"] = createFnDouble(max)
+        math.functions["min"] = createFnDouble(min)
         math.functions["min_angle"] = createFnDouble(minAngle)
-        math.functions["mod"] = createFnDouble2(mod)
+        math.functions["mod"] = createFnDouble(mod)
         math.variables["pi"] = .double(.pi)
-        math.functions["pow"] = createFnDouble2(pow)
-        math.functions["random"] = createFnDouble2(random)
-        math.functions["random_integer"] = createFnInt2(randomInteger)
+        math.functions["pow"] = createFnDouble(pow)
+        math.functions["random"] = createFnDouble(random)
+        math.functions["random_integer"] = createFnInt(randomInteger)
         math.functions["round"] = createFnDouble(round)
         math.functions["sin"] = createFnDouble(sin)
         math.functions["sqrt"] = createFnDouble(sqrt)
@@ -106,7 +106,7 @@ struct MolangMath {
         }
     }
     
-    private static func createFnDouble2(_ fn: @escaping (Double, Double) -> Double) -> ((MoParams) -> MoValue) {
+    private static func createFnDouble(_ fn: @escaping (Double, Double) -> Double) -> ((MoParams) -> MoValue) {
         { params in
             .double(fn(
                 params.getDouble(at: 0) ?? 0,
@@ -115,7 +115,7 @@ struct MolangMath {
         }
     }
     
-    private static func createFnDouble3(_ fn: @escaping (Double, Double, Double) -> Double) -> ((MoParams) -> MoValue) {
+    private static func createFnDouble(_ fn: @escaping (Double, Double, Double) -> Double) -> ((MoParams) -> MoValue) {
         { params in
             .double(fn(
                 params.getDouble(at: 0) ?? 0,
@@ -133,7 +133,7 @@ struct MolangMath {
         }
     }
     
-    private static func createFnInt2(_ fn: @escaping (Int, Int) -> Int) -> ((MoParams) -> MoValue) {
+    private static func createFnInt(_ fn: @escaping (Int, Int) -> Int) -> ((MoParams) -> MoValue) {
         { params in
             .double(Double(fn(
                 params.getInteger(at: 0) ?? 0,
@@ -142,7 +142,7 @@ struct MolangMath {
         }
     }
     
-    private static func createFnInt3(_ fn: @escaping (Int, Int, Int) -> Int) -> ((MoParams) -> MoValue) {
+    private static func createFnInt(_ fn: @escaping (Int, Int, Int) -> Int) -> ((MoParams) -> MoValue) {
         { params in
             .double(Double(fn(
                 params.getInteger(at: 0) ?? 0,

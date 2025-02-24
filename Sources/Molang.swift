@@ -1,5 +1,5 @@
 public struct Molang {
-    public static func parse(code: String) -> [Expression] {
+    public static func parse(code: String) -> [MolangExpression] {
         createParser(code: code).parse()
     }
     
