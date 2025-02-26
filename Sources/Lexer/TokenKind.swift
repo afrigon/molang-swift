@@ -1,4 +1,4 @@
-enum TokenType {
+enum TokenKind {
     case arrow
     case coalesce
     
@@ -12,10 +12,10 @@ enum TokenType {
     case greaterThan
     case lesserThan
     
+    case parenthesisLeft
+    case parenthesisRight
     case bracketLeft
     case bracketRight
-    case arrayLeft
-    case arrayRight
     case curlyBracketLeft
     case curlyBracketRight
     case comma
@@ -28,12 +28,12 @@ enum TokenType {
     case colon
     case semiColon
     case bang
-    case identifier(String)
     case bool(Bool)
+    case number(Float)
     case string(String)
-    case number(Double)
     case keyword(Keyword)
-    case EOF
+    case identifier(String)
+    case unknown(String)
 }
 
 enum Keyword: String {
@@ -44,3 +44,5 @@ enum Keyword: String {
     case loop
     case this
 }
+
+extension TokenKind: Equatable { }

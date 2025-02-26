@@ -1,4 +1,4 @@
 struct Token {
-    let type: TokenType
+    let kind: TokenKind
     let position: TokenPosition
 }

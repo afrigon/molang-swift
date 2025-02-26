@@ -13,8 +13,8 @@ struct MoParams {
         return params[index]
     }
     
-    func getDouble(at index: Int) -> Double? {
-        guard case let .double(value) = get(at: index) else {
+    func getFloat(at index: Int) -> Float? {
+        guard case let .float(value) = get(at: index) else {
             return nil
         }
         
@@ -22,11 +22,11 @@ struct MoParams {
     }
     
     func getInteger(at index: Int) -> Int? {
-        getDouble(at: index).map(Int.init)
+        getFloat(at: index).map(Int.init)
     }
 
     func getBool(at index: Int) -> Bool? {
-        guard case let .double(value) = get(at: index) else {
+        guard case let .float(value) = get(at: index) else {
             return nil
         }
         
