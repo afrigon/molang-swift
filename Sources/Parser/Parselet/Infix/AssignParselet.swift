@@ -1,5 +1,5 @@
 struct AssignParselet: InfixParselet {
-    func parse(parser: MolangParser, token: Token, left: MolangExpression) -> MolangExpression? {
+    func parse(parser: inout MolangParser, token: Token, left: MolangExpression) -> MolangExpression? {
         nil
     }
 }

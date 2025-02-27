@@ -1,5 +1,5 @@
 struct ContinueParselet: PrefixParselet {
-    func parse(parser: MolangParser, token: Token) -> MolangExpression? {
-        nil
+    func parse(parser: inout MolangParser, token: Token) -> MolangExpression? {
+        .continue
     }
 }

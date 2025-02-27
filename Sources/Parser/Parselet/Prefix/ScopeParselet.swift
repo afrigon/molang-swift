@@ -1,5 +1,5 @@
 struct ScopeParselet: PrefixParselet {
-    func parse(parser: MolangParser, token: Token) -> MolangExpression? {
+    func parse(parser: inout MolangParser, token: Token) -> MolangExpression? {
         nil
     }
 }

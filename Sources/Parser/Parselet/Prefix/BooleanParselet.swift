@@ -1,5 +1,9 @@
 struct BooleanParselet: PrefixParselet {
-    func parse(parser: MolangParser, token: Token) -> MolangExpression? {
-        nil
+    func parse(parser: inout MolangParser, token: Token) -> MolangExpression? {
+        guard case let .boolean(value) = token.kind else {
+            return nil
+        }
+        
+        return .boolean(value)
     }
 }

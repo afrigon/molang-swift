@@ -1,7 +1,7 @@
-struct MoParams {
+public struct MoParams {
     private let params: [MoValue]
     
-    init(params: [MoValue] = []) {
+    public init(params: [MoValue] = []) {
         self.params = params
     }
     
@@ -43,9 +43,9 @@ struct MoParams {
 }
 
 extension MoParams: Sequence {
-    typealias Iterator = Array<MoValue>.Iterator
+    public typealias Iterator = Array<MoValue>.Iterator
     
-    func makeIterator() -> Array<MoValue>.Iterator {
+    public func makeIterator() -> Array<MoValue>.Iterator {
         params.makeIterator()
     }
 }

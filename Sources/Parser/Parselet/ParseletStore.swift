@@ -7,7 +7,7 @@ struct ParseletStore {
                 StringParselet()
             case .number:
                 NumberParselet()
-            case .bool:
+            case .boolean:
                 BooleanParselet()
             case .keyword(.return):
                 ReturnParselet()
@@ -30,7 +30,7 @@ struct ParseletStore {
             case .plus:
                 UnaryPlusParselet()
             case .bang:
-                BooleanNotParselet()
+                LogicalNotParselet()
             default:
                 nil
         }
@@ -56,11 +56,11 @@ struct ParseletStore {
                 BinaryOperationParselet(precedence: .compare)
             case .greaterThan:
                 BinaryOperationParselet(precedence: .compare)
-            case .greaterOrEqualThan:
+            case .greaterThanOrEqual:
                 BinaryOperationParselet(precedence: .compare)
             case .lesserThan:
                 BinaryOperationParselet(precedence: .compare)
-            case .lesserOrEqualThan:
+            case .lesserThanOrEqual:
                 BinaryOperationParselet(precedence: .compare)
             case .logicalAnd:
                 BinaryOperationParselet(precedence: .and)

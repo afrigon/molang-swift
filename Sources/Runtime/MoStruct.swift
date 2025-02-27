@@ -1,11 +1,17 @@
-class MoStruct {
+public class MoStruct {
     let readOnly: Bool
     
     var variables: [String: MoValue] = .init()
     var functions: [String: (MoParams) -> MoValue] = .init()
     
-    init(readOnly: Bool = false) {
+    public init(
+        readOnly: Bool = false,
+        variables: [String: MoValue] = .init(),
+        functions: [String: (MoParams) -> MoValue] = .init()
+    ) {
         self.readOnly = readOnly
+        self.variables = variables
+        self.functions = functions
     }
     
     func call(_ key: String, params: MoParams = .init()) -> MoValue? {

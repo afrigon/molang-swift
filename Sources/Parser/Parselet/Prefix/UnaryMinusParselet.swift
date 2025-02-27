@@ -1,5 +1,9 @@
 struct UnaryMinusParselet: PrefixParselet {
-    func parse(parser: MolangParser, token: Token) -> MolangExpression? {
-        nil
+    func parse(parser: inout MolangParser, token: Token) -> MolangExpression? {
+        guard let right = parser.parseExpression(precedence: .prefix) else {
+            return nil
+        }
+        
+        return .unaryMinus(right)
     }
 }

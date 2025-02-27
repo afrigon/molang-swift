@@ -42,7 +42,7 @@ struct Lexer: Sequence {
                 case "]": .bracketRight
                 case "+": .plus
                 case "-":
-                    if input.next { $0 == ">" } != nil {
+                    if input.next(if: { $0 == ">" }) != nil {
                         .arrow
                     } else {
                         .minus
@@ -50,14 +50,14 @@ struct Lexer: Sequence {
                 case "*": .asterisk
                 case "/": .slash
                 case "?":
-                    if input.next { $0 == "?" } != nil {
+                    if input.next(if: { $0 == "?" }) != nil {
                         .coalesce
                     } else {
                         .questionMark
                     }
                 case ",": .comma
                 case "=":
-                    if input.next { $0 == "=" } != nil {
+                    if input.next(if: { $0 == "=" }) != nil {
                         .equals
                     } else {
                         .assign
@@ -65,31 +65,31 @@ struct Lexer: Sequence {
                 case ":": .colon
                 case ";": .semiColon
                 case "!":
-                    if input.next { $0 == "=" } != nil {
+                    if input.next(if: { $0 == "=" }) != nil {
                         .notEquals
                     } else {
                         .bang
                     }
                 case ">":
-                    if input.next { $0 == "=" } != nil {
-                        .greaterOrEqualThan
+                    if input.next(if: { $0 == "=" }) != nil {
+                        .greaterThanOrEqual
                     } else {
                         .greaterThan
                     }
                 case "<":
-                    if input.next { $0 == "=" } != nil {
-                        .lesserOrEqualThan
+                    if input.next(if: { $0 == "=" }) != nil {
+                        .lesserThanOrEqual
                     } else {
                         .lesserThan
                     }
                 case "&":
-                    if input.next { $0 == "&" } != nil {
+                    if input.next(if: { $0 == "&" }) != nil {
                         .logicalAnd
                     } else {
                         .unknown("&")
                     }
                 case "|":
-                    if input.next { $0 == "|" } != nil {
+                    if input.next(if: { $0 == "|" }) != nil {
                         .logicalOr
                     } else {
                         .unknown("|")
@@ -135,8 +135,8 @@ struct Lexer: Sequence {
         }
         
         return switch identifier {
-            case "true": .bool(true)
-            case "false": .bool(false)
+            case "true": .boolean(true)
+            case "false": .boolean(false)
             default: .identifier(identifier)
         }
     }
@@ -144,7 +144,11 @@ struct Lexer: Sequence {
     func nextIdentifier(_ first: Character) -> String {
         var identifier = "\(first)"
 
-        while let c = input.next(if: { $0?.isASCII == true && ($0?.isLetter == true || $0?.isWholeNumber == true) }) {
+        while let c = input.next(if: { n in
+            guard let n else { return false }
+            
+            return n.isASCII && (n.isLetter || n.isWholeNumber || n == "." || n == "_")
+        }) {
             identifier.append(c)
         }
 
@@ -153,7 +157,7 @@ struct Lexer: Sequence {
     
     // TODO: handle scientific, hex, bin, octal notation ?
     func nextNumber(_ first: Character) -> Float? {
-        var number = ""
+        var number = "\(first)"
         var hasDecimal = false
             
         while let c = input.next(if: { ($0?.isASCII == true && $0?.isWholeNumber == true) || $0 == "." }) {

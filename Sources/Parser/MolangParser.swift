@@ -26,9 +26,8 @@ public struct MolangParser {
         return .init(expressions)
     }
     
-    private mutating func parseExpression(precedence: Precedence = .infinity) -> MolangExpression? {
+    mutating func parseExpression(precedence: Precedence = .infinity) -> MolangExpression? {
         guard let token = tokens.next() else {
-            errors.parse(.unexpectedToken(expected: "<expression>", got: nil))
             return nil
         }
         
@@ -37,7 +36,7 @@ public struct MolangParser {
             return nil
         }
         
-        guard let left = prefixPrselet.parse(parser: self, token: token) else {
+        guard let left = prefixPrselet.parse(parser: &self, token: token) else {
             // error was reported by parselet
             return nil
         }
@@ -48,8 +47,8 @@ public struct MolangParser {
     private mutating func parseInfixExpression(_ left: MolangExpression, precedence: Precedence) -> MolangExpression? {
         var left: MolangExpression? = left
         
-        while var token = tokens.next(if: { $0 != nil && precedence.rawValue < self.precedence(of: $0?.kind).rawValue }), let leftExpression = left {
-            left = parselets.get(infix: token.kind)?.parse(parser: self, token: token, left: leftExpression)
+        while let token = tokens.next(if: { $0 != nil && precedence.rawValue < self.precedence(of: $0?.kind).rawValue }), let leftExpression = left {
+            left = parselets.get(infix: token.kind)?.parse(parser: &self, token: token, left: leftExpression)
         }
             
         return left
@@ -61,6 +60,17 @@ public struct MolangParser {
         }
         
         return .infinity
+    }
+    
+    func resolveAliases(_ identifier: String) -> String {
+        guard let match = identifier.firstMatch(of: #/^(?<before>[^.]*)\.(?<after>.*)$/#) else {
+            return aliases[identifier] ?? identifier
+        }
+        
+        let before = String(match.output.before)
+        let after = String(match.output.after)
+        
+        return "\(aliases[before] ?? before).\(after)"
     }
     
     mutating func parseArguments() -> [MolangExpression] {

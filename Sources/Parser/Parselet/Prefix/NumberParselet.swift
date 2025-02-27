@@ -1,5 +1,9 @@
 struct NumberParselet: PrefixParselet {
-    func parse(parser: MolangParser, token: Token) -> MolangExpression? {
-        nil
+    func parse(parser: inout MolangParser, token: Token) -> MolangExpression? {
+        guard case let .number(value) = token.kind else {
+            return nil
+        }
+        
+        return .number(value)
     }
 }

@@ -1,16 +1,16 @@
 public enum BinaryOperationExpression {
-    case arrow
-    case and
-    case or
-    case coalesce
-    case divide
-    case equal
-    case greater
-    case greaterOrEqual
-    case lesser
-    case lesserOrEqual
-    case notEquat
-    case minus
-    case plus
-    case multiply
+    case arrow(MolangExpression, MolangExpression)
+    case logicalAnd(MolangExpression, MolangExpression)
+    case logicalOr(MolangExpression, MolangExpression)
+    case coalesce(MolangExpression, MolangExpression)
+    case addition(MolangExpression, MolangExpression)
+    case substraction(MolangExpression, MolangExpression)
+    case multiply(MolangExpression, MolangExpression)
+    case divide(MolangExpression, MolangExpression)
+    case equal(MolangExpression, MolangExpression)
+    case notEqual(MolangExpression, MolangExpression)
+    case greater(MolangExpression, MolangExpression)
+    case greaterOrEqual(MolangExpression, MolangExpression)
+    case lesser(MolangExpression, MolangExpression)
+    case lesserOrEqual(MolangExpression, MolangExpression)
 }

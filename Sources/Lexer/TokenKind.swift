@@ -7,8 +7,8 @@ enum TokenKind {
     
     case equals
     case notEquals
-    case greaterOrEqualThan
-    case lesserOrEqualThan
+    case greaterThanOrEqual
+    case lesserThanOrEqual
     case greaterThan
     case lesserThan
     
@@ -28,7 +28,7 @@ enum TokenKind {
     case colon
     case semiColon
     case bang
-    case bool(Bool)
+    case boolean(Bool)
     case number(Float)
     case string(String)
     case keyword(Keyword)

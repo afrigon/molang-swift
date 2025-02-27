@@ -17,7 +17,7 @@ class Peekable<T: Sequence> {
     
     func next(if f: (T.Element?) -> Bool) -> T.Element? {
         if f(peek()) {
-            return peeked?.take()
+            return peeked.take() ?? nil
         }
         
         return nil
