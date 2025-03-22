@@ -1,7 +1,7 @@
-struct ErrorStore {
-    var errors: [MoError] = []
+public struct ErrorStore {
+    private(set) public var errors: [MoError] = []
     
-    var isEmpty: Bool {
+    public var isEmpty: Bool {
         errors.isEmpty
     }
 
@@ -14,16 +14,16 @@ struct ErrorStore {
     }
 }
 
-enum MoError: Error {
+public enum MoError: Error {
     case parse(MoParseError)
     case runtime(MoRuntimeError)
 }
 
-enum MoParseError {
+public enum MoParseError {
     case unexpectedToken(expected: String, got: TokenKind?)
 }
 
-enum MoRuntimeError {
+public enum MoRuntimeError {
     case noWritePermission(String)
     
     var message: String {
@@ -31,5 +31,23 @@ enum MoRuntimeError {
             case .noWritePermission(let name):
                 "cannot write to read-only struct: \(name)"
         }
+    }
+}
+
+extension ErrorStore: Collection {
+    public var startIndex: Int {
+        errors.startIndex
+    }
+    
+    public var endIndex: Int {
+        errors.endIndex
+    }
+    
+    public func index(after i: Int) -> Int {
+        errors.index(after: i)
+    }
+
+    public subscript(position: Int) -> MoError {
+        errors[position]
     }
 }

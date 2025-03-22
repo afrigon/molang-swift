@@ -93,11 +93,17 @@ struct MolangMath {
     }
     
     private static func random(_ a: Float, _ b: Float) -> Float {
-        Float.random(in: a...b)
+        let lo = min(a, b)
+        let hi = min(a, b)
+        
+        return Float.random(in: lo...hi)
     }
 
     private static func randomInteger(_ a: Int, _ b: Int) -> Int {
-        Int.random(in: a...b)
+        let lo = min(a, b)
+        let hi = min(a, b)
+        
+        return Int.random(in: lo...hi)
     }
 
     private static func createFnFloat(_ fn: @escaping (Float) -> Float) -> (MoParams) -> MoValue {

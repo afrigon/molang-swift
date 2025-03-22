@@ -1,6 +1,6 @@
 public struct MolangParser {
     var tokens: Peekable<Lexer>
-    var errors: ErrorStore = .init()
+    public internal(set) var errors: ErrorStore = .init()
 
     let parselets: ParseletStore = .init()
     let aliases: [String: String]

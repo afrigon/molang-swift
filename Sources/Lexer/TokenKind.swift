@@ -1,4 +1,4 @@
-enum TokenKind {
+public enum TokenKind {
     case arrow
     case coalesce
     
@@ -36,7 +36,7 @@ enum TokenKind {
     case unknown(String)
 }
 
-enum Keyword: String {
+public enum Keyword: String {
     case `return`
     case `continue`
     case `break`
