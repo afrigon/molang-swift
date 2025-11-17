@@ -1,8 +1,10 @@
 # A Swift implementation of Molang
 
-A parser and runtime for the Molang language used in Minecraft resources.
+> [!WARNING]
+> This implementation is not fully compliant with the specification.
+> It's in a good enough state to parse and execute simple expressions used in animations.
 
-> This implementation is not fully compliant with the specification. It's in a good enough state to parse and execute simple expressions used in animations.
+A parser and runtime for the Molang language used in Minecraft resources.
 
 ## Usage Example
 
