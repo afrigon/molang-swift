@@ -1,5 +1,5 @@
 # Set --swift-version to match the repository's swift-tools-version.
---swift-version 5.9
+--swift-version 6.3
 
 --indent 4
 --indent-case true

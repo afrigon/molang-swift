@@ -2,5 +2,6 @@
 lockfile = true
 
 [tools]
+swift = "6.3"
 swiftlint = "0"
 swiftformat = "0"
