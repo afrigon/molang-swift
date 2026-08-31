@@ -10,6 +10,10 @@ swiftformat = "0.62"
 description = "Build the package"
 run = "swift build"
 
+[tasks.test]
+description = "Run the test suite"
+run = "swift test"
+
 [tasks.lint]
 description = "Lint sources with swiftlint"
 run = "swiftlint lint"

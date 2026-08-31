@@ -67,6 +67,6 @@ for error in parser.errors {
 ## Development
 
 ```sh
-swift build
-swift test
+mise run build
+mise run test
 ```
