@@ -5,3 +5,15 @@ lockfile = true
 swift = "6.3"
 swiftlint = "0"
 swiftformat = "0"
+
+[tasks.build]
+description = "Build the package"
+run = "swift build"
+
+[tasks.lint]
+description = "Lint sources with swiftlint"
+run = "swiftlint lint"
+
+[tasks.format]
+description = "Format sources with swiftformat"
+run = "swiftformat ."
