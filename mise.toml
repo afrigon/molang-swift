@@ -1,0 +1,23 @@
+[settings]
+lockfile = true
+
+[tools]
+swift = "6.3"
+swiftlint = "0.65"
+swiftformat = "0.62"
+
+[tasks.build]
+description = "Build the package"
+run = "swift build"
+
+[tasks.test]
+description = "Run the test suite"
+run = "swift test"
+
+[tasks.lint]
+description = "Lint sources with swiftlint"
+run = "swiftlint lint"
+
+[tasks.format]
+description = "Format sources with swiftformat"
+run = "swiftformat ."
